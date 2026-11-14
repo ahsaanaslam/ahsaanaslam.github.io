@@ -3,18 +3,22 @@
 Personal portfolio website, live at **https://ahsaanaslam.github.io**
 
 Built with plain HTML, CSS, and JavaScript — no frameworks, no build step.
-Edit a file, push, and GitHub Pages redeploys automatically within a minute or two.
+Animations are powered by [Motion](https://motion.dev) (vendored locally, no CDN
+dependency). Edit a file, push, and GitHub Pages redeploys automatically within
+a minute or two.
 
 ## Project structure
 
 ```
-index.html          The whole site (all sections)
-css/style.css       All styling (design tokens at the top under :root)
-js/main.js          Animations, navigation, project details, contact form
-assets/favicon.svg  Browser tab icon
-assets/projects/    Put approved project screenshots here (see its README)
-assets/docs/        Put approved, sanitized PDF documentation here (see its README)
-.nojekyll           Tells GitHub Pages to serve files as-is
+index.html               The whole site (all sections)
+css/style.css            All styling (design tokens at the top under :root)
+js/main.js               Interactions: reveals, counters, cursor, tilt, magnetic
+                         buttons, navigation, project details, contact form
+js/vendor/motion.min.js  Motion (motion.dev) animation library, v12 — vendored
+assets/favicon.svg       Browser tab icon
+assets/projects/         Put approved project screenshots here (see its README)
+assets/docs/             Put approved, sanitized PDF documentation here (see its README)
+.nojekyll                Tells GitHub Pages to serve files as-is
 ```
 
 ## How to update the site

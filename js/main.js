@@ -1,15 +1,29 @@
 /* ============================================================
    Ahsaan Aslam — Portfolio interactions
-   Vanilla JS, no dependencies. Respects prefers-reduced-motion.
+   Powered by Motion (motion.dev) vendored at js/vendor/motion.min.js
+   Respects prefers-reduced-motion. Degrades gracefully without JS.
    ============================================================ */
 (function () {
   "use strict";
 
+  document.documentElement.classList.add("js");
+
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var M = window.Motion || null; // { animate, inView, stagger, ... }
 
   /* ---------- Current year ---------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* ---------- Preloader cleanup ---------- */
+  var preloader = document.getElementById("preloader");
+  if (preloader) {
+    // CSS animates it out; remove it from the DOM once done.
+    window.setTimeout(function () {
+      if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+    }, reducedMotion ? 0 : 2000);
+  }
 
   /* ---------- Nav: scrolled state + progress bar ---------- */
   var nav = document.getElementById("nav");
@@ -21,7 +35,7 @@
     ticking = true;
     window.requestAnimationFrame(function () {
       var y = window.scrollY || 0;
-      nav.classList.toggle("is-scrolled", y > 24);
+      if (nav) nav.classList.toggle("is-scrolled", y > 24);
       if (progress) {
         var max = document.documentElement.scrollHeight - window.innerHeight;
         progress.style.width = max > 0 ? (y / max) * 100 + "%" : "0%";
@@ -37,6 +51,7 @@
   var menu = document.getElementById("navMenu");
 
   function closeMenu() {
+    if (!menu || !toggle) return;
     menu.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
   }
@@ -57,21 +72,33 @@
   /* ---------- Scroll-triggered reveals ---------- */
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 
-  if (reducedMotion || !("IntersectionObserver" in window)) {
-    revealEls.forEach(function (el) { el.classList.add("in-view"); });
-  } else {
-    // Stagger siblings inside grid/list containers for a cascading entrance.
-    revealEls.forEach(function (el) {
-      var parent = el.parentElement;
-      if (!parent) return;
-      var siblings = Array.prototype.filter.call(parent.children, function (c) {
-        return c.classList && c.classList.contains("reveal");
-      });
-      if (siblings.length > 1) {
-        el.style.setProperty("--stagger", (siblings.indexOf(el) * 0.08).toFixed(2) + "s");
-      }
+  // Stagger siblings inside grid/list containers for a cascading entrance.
+  revealEls.forEach(function (el) {
+    var parent = el.parentElement;
+    if (!parent) return;
+    var siblings = Array.prototype.filter.call(parent.children, function (c) {
+      return c.classList && c.classList.contains("reveal");
     });
+    if (siblings.length > 1) {
+      el.style.setProperty("--stagger", (siblings.indexOf(el) * 0.08).toFixed(2) + "s");
+    }
+  });
 
+  function revealAll() {
+    revealEls.forEach(function (el) { el.classList.add("in-view"); });
+  }
+
+  if (reducedMotion) {
+    revealAll();
+  } else if (M) {
+    revealEls.forEach(function (el) {
+      M.inView(
+        el,
+        function (target) { target.classList.add("in-view"); },
+        { amount: 0.12 }
+      );
+    });
+  } else if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -80,9 +107,30 @@
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-
     revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealAll();
   }
+
+  /* ---------- Animated counters ---------- */
+  var counters = Array.prototype.slice.call(document.querySelectorAll(".stat-num[data-count]"));
+
+  counters.forEach(function (el) {
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    if (reducedMotion || !M) {
+      el.textContent = String(target);
+      return;
+    }
+    el.textContent = "0";
+    M.inView(el, function () {
+      M.animate(0, target, {
+        duration: 1.4,
+        delay: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+        onUpdate: function (v) { el.textContent = String(Math.round(v)); }
+      });
+    }, { amount: 1 });
+  });
 
   /* ---------- Active nav link highlighting ---------- */
   var sectionIds = ["about", "experience", "projects", "skills", "education", "contact"];
@@ -115,6 +163,83 @@
     });
   }
 
+  /* ---------- Custom cursor (fine pointers, motion allowed) ---------- */
+  var cursor = document.getElementById("cursor");
+  var cursorDot = document.getElementById("cursorDot");
+  var cursorRing = document.getElementById("cursorRing");
+
+  if (cursor && cursorDot && cursorRing && finePointer && !reducedMotion) {
+    var mx = -100, my = -100, rx = -100, ry = -100;
+
+    document.addEventListener("pointermove", function (e) {
+      mx = e.clientX;
+      my = e.clientY;
+      cursorDot.style.transform = "translate(" + mx + "px," + my + "px)";
+    }, { passive: true });
+
+    (function ringLoop() {
+      rx += (mx - rx) * 0.16;
+      ry += (my - ry) * 0.16;
+      cursorRing.style.transform = "translate(" + rx + "px," + ry + "px)";
+      window.requestAnimationFrame(ringLoop);
+    })();
+
+    var hoverSelector = "a, button, [data-magnetic], .collab-card, .it-card, .skill-card, .web-card";
+    document.addEventListener("pointerover", function (e) {
+      if (e.target.closest(hoverSelector)) cursor.classList.add("is-hover");
+    });
+    document.addEventListener("pointerout", function (e) {
+      if (e.target.closest(hoverSelector)) cursor.classList.remove("is-hover");
+    });
+  } else if (cursor) {
+    cursor.style.display = "none";
+  }
+
+  /* ---------- Magnetic buttons ---------- */
+  if (finePointer && !reducedMotion && M) {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-magnetic]"), function (el) {
+      var strength = 0.3;
+
+      el.addEventListener("pointermove", function (e) {
+        var rect = el.getBoundingClientRect();
+        var dx = (e.clientX - rect.left - rect.width / 2) * strength;
+        var dy = (e.clientY - rect.top - rect.height / 2) * strength;
+        el.style.transform = "translate(" + dx.toFixed(1) + "px," + dy.toFixed(1) + "px)";
+      });
+
+      el.addEventListener("pointerleave", function () {
+        el.style.transform = "";
+        M.animate(
+          el,
+          { transform: "translate(0px, 0px)" },
+          { type: "spring", stiffness: 260, damping: 18 }
+        );
+      });
+    });
+  }
+
+  /* ---------- Tilt on project mockups & portrait ---------- */
+  if (finePointer && !reducedMotion) {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-tilt]"), function (el) {
+      var maxTilt = 6;
+
+      el.addEventListener("pointermove", function (e) {
+        var rect = el.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width - 0.5;
+        var py = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform =
+          "perspective(900px) rotateX(" + (-py * maxTilt).toFixed(2) + "deg) rotateY(" +
+          (px * maxTilt).toFixed(2) + "deg)";
+      });
+
+      el.addEventListener("pointerleave", function () {
+        el.style.transition = "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
+        el.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+        window.setTimeout(function () { el.style.transition = ""; }, 500);
+      });
+    });
+  }
+
   /* ---------- ERP card expandable details ---------- */
   document.querySelectorAll(".erp-card__more").forEach(function (btn) {
     var detail = btn.nextElementSibling;
@@ -122,8 +247,20 @@
     btn.addEventListener("click", function () {
       var expanded = btn.getAttribute("aria-expanded") === "true";
       btn.setAttribute("aria-expanded", String(!expanded));
-      detail.hidden = expanded;
       btn.querySelector("span").textContent = expanded ? "Project details" : "Hide details";
+
+      if (expanded) {
+        detail.hidden = true;
+      } else {
+        detail.hidden = false;
+        if (M && !reducedMotion) {
+          M.animate(
+            detail,
+            { opacity: [0, 1], transform: ["translateY(-8px)", "translateY(0px)"] },
+            { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+          );
+        }
+      }
     });
   });
 
