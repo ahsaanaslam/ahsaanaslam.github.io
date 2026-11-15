@@ -37,9 +37,7 @@ git push
 
 Search `index.html` for **`EDIT ME`** to find them:
 
-- **Email** — in the Contact section, replace the placeholder block with a real
-  `mailto:` link once you decide which address to show publicly.
-- **LinkedIn** — same section, add your profile URL when ready.
+- **LinkedIn** — in the Contact section, add your profile URL when ready.
 - **Profile photo** — in the Hero section, replace the monogram block with
   `<img src="assets/profile.jpg" alt="Portrait of Ahsaan Aslam">` after adding
   your photo to `assets/`.
