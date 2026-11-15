@@ -306,7 +306,7 @@
 
       if (!configured) {
         status.textContent =
-          "The contact form isn't connected to a sending service yet — please reach out via GitHub instead.";
+          "The contact form isn't connected to a sending service yet — please email ahsanaslam2221@gmail.com directly.";
         status.className = "contact-form__status is-error";
         return;
       }
