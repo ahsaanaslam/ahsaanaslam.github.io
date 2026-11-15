@@ -364,16 +364,18 @@
                 <code>ASP.NET Web Forms</code><code>VB.NET</code><code>SQL Server 2014</code><code>Visual Studio 2022</code>
               </div>
               <button class="erp-card__more" type="button" aria-expanded="false">
-                <span>Project details</span>
+                <span>Read the case study</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="erp-card__detail" hidden>
-                <h4>My contribution</h4>
-                <p>Sole developer - requirements analysis, database design, UI, business logic, deployment, user support, and complete PDF documentation.</p>
+                <h4>The problem</h4>
+                <p>In a manufacturing company, internal work easily scatters across verbal requests, phone calls, and email: tasks lose their owner and deadline, maintenance issues go unlogged, and management has no view of what is pending or who is responsible for it.</p>
+                <h4>The solution</h4>
+                <p>One coordination system inside the ERP where every piece of work becomes a trackable record. Tasks carry an owner, a priority, and a deadline; tickets are classified by type (building maintenance, machinery, ERP, product) and routed to the person responsible for that area; meetings, memos, and suggestions live in the same system instead of inboxes.</p>
+                <h4>How I built it</h4>
+                <p>Designed the data model and status workflows (created, responded, deferred, closed) on SQL Server 2014, with the UI and business logic in ASP.NET Web Forms and VB.NET. Setup screens let managers define their own task types, statuses, and ticket routing per location and machine, so the module adapts to the company without code changes. I handled requirements, development, deployment, user support, and full documentation as sole developer.</p>
                 <h4>Status</h4>
-                <p>Deployed and actively used at AirSupplyCorp for internal operations coordination.</p>
-                <h4>Documentation</h4>
-                <p class="placeholder-note">Sanitized PDF documentation can be added here once approved - place it in <code>assets/docs/</code> and link it.</p>
+                <p>Deployed and actively used at AirSupplyCorp for day-to-day operations coordination.</p>
               </div>
             </div>
           </article>
@@ -421,16 +423,18 @@
                 <code>ASP.NET Web Forms</code><code>VB.NET</code><code>SQL Server 2014</code><code>Visual Studio 2022</code>
               </div>
               <button class="erp-card__more" type="button" aria-expanded="false">
-                <span>Project details</span>
+                <span>Read the case study</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="erp-card__detail" hidden>
-                <h4>My contribution</h4>
-                <p>Sole developer - full module design and implementation, payroll logic, database schema, deployment, and complete PDF documentation.</p>
+                <h4>The problem</h4>
+                <p>Managing a workforce on paperwork and spreadsheets makes payroll slow and error-prone: attendance is hard to verify, salary rules are applied by hand, and there is no single, reliable record of an employee's history from hiring to exit, nor any enforced approval before sensitive changes.</p>
+                <h4>The solution</h4>
+                <p>A system of record for the entire employee lifecycle: hiring and positions, employee master data, attendance with shifts and leave policies, payroll, and termination/retirement, with sensitive actions gated behind multi-level management approvals (department manager, HR management, finance).</p>
+                <h4>How I built it</h4>
+                <p>Modeled the schema around a central employee master on SQL Server 2014, with ASP.NET Web Forms and VB.NET on top. Payroll is policy-driven: shifts, overtime rates, leave deadlines, and deduction rules are configured once in HR Setup and applied automatically, so calculations come from configuration rather than manual edits. Attendance supports both automatic capture (barcode / face ID) and controlled manual entry. Sole developer across schema, payroll logic, UI, deployment, and documentation.</p>
                 <h4>Status</h4>
                 <p>Deployed and actively used at AirSupplyCorp as the company's HR and payroll system.</p>
-                <h4>Documentation</h4>
-                <p class="placeholder-note">Sanitized PDF documentation can be added here once approved - place it in <code>assets/docs/</code> and link it.</p>
               </div>
             </div>
           </article>
@@ -479,16 +483,18 @@
                 <code>ASP.NET Web Forms</code><code>VB.NET</code><code>SQL Server 2014</code><code>Visual Studio 2022</code>
               </div>
               <button class="erp-card__more" type="button" aria-expanded="false">
-                <span>Project details</span>
+                <span>Read the case study</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="erp-card__detail" hidden>
-                <h4>My contribution</h4>
-                <p>Sole developer - data model design, standardized item workflows, UI, deployment, and complete PDF documentation.</p>
+                <h4>The problem</h4>
+                <p>When every department describes items its own way, an ERP fills with duplicate records, inconsistent codes, and unreliable costs. Purchasing, warehousing, production, and sales end up working from different versions of the same item, and no report can be trusted.</p>
+                <h4>The solution</h4>
+                <p>A single, governed source of truth for every item the company manufactures, purchases, or sells: a standardized creation workflow that generates consistent item numbers by category and segment, structured classification, sourcing and costing per item, bills of material, and physical data such as units, weights, and HS codes.</p>
+                <h4>How I built it</h4>
+                <p>Translated detailed written design specifications (shown in the gallery) into a normalized SQL Server 2014 schema, then built the tabbed creation workflow in ASP.NET Web Forms and VB.NET: item type and segment first, then sourcing and costing, bill of material, and physical data, with verify and approve steps before an item is posted. Other ERP modules read from this master, so clean data propagates across the whole platform. Sole developer from data model to deployment and documentation.</p>
                 <h4>Status</h4>
                 <p>Deployed and actively used at AirSupplyCorp as the organization's material master.</p>
-                <h4>Documentation</h4>
-                <p class="placeholder-note">Sanitized PDF documentation can be added here once approved - place it in <code>assets/docs/</code> and link it.</p>
               </div>
             </div>
           </article>

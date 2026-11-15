@@ -269,7 +269,7 @@
     btn.addEventListener("click", function () {
       var expanded = btn.getAttribute("aria-expanded") === "true";
       btn.setAttribute("aria-expanded", String(!expanded));
-      btn.querySelector("span").textContent = expanded ? "Project details" : "Hide details";
+      btn.querySelector("span").textContent = expanded ? "Read the case study" : "Hide case study";
 
       if (expanded) {
         detail.hidden = true;
