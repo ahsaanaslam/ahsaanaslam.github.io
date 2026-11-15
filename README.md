@@ -1,8 +1,8 @@
-# Ahsaan Aslam — Developer Portfolio
+# Ahsaan Aslam - Developer Portfolio
 
 Personal portfolio website, live at **https://ahsaanaslam.github.io**
 
-Built with plain HTML, CSS, and JavaScript — no frameworks, no build step.
+Built with plain HTML, CSS, and JavaScript - no frameworks, no build step.
 Animations are powered by [Motion](https://motion.dev) (vendored locally, no CDN
 dependency). Edit a file, push, and GitHub Pages redeploys automatically within
 a minute or two.
@@ -14,7 +14,7 @@ index.html               The whole site (all sections)
 css/style.css            All styling (design tokens at the top under :root)
 js/main.js               Interactions: reveals, counters, cursor, tilt, magnetic
                          buttons, navigation, project details, contact form
-js/vendor/motion.min.js  Motion (motion.dev) animation library, v12 — vendored
+js/vendor/motion.min.js  Motion (motion.dev) animation library, v12 - vendored
 assets/favicon.svg       Browser tab icon
 assets/projects/         Put approved project screenshots here (see its README)
 assets/docs/             Put approved, sanitized PDF documentation here (see its README)
@@ -37,16 +37,16 @@ git push
 
 Search `index.html` for **`EDIT ME`** to find them:
 
-- **Profile photo** — in the Hero section, replace the monogram block with
+- **Profile photo** - in the Hero section, replace the monogram block with
   `<img src="assets/profile.jpg" alt="Portrait of Ahsaan Aslam">` after adding
   your photo to `assets/`.
-- **University name** — the resume at `assets/Ahsaan-Aslam-CV.pdf` has a
+- **University name** - the resume at `assets/Ahsaan-Aslam-CV.pdf` has a
   `[University Name]` placeholder in its Education section; regenerate or edit
   the file once you want it shown.
 
 ## Contact form
 
-GitHub Pages is static hosting — it cannot send email by itself. The form is
+GitHub Pages is static hosting - it cannot send email by itself. The form is
 wired for [Formspree](https://formspree.io) (free tier available):
 
 1. Create a Formspree account and a new form; it gives you an ID like `xabcdefg`.
@@ -54,7 +54,7 @@ wired for [Formspree](https://formspree.io) (free tier available):
 3. Push. The form will then deliver messages to your email.
 
 Until then, the form politely tells visitors it isn't connected and points them
-to GitHub — it never pretends to send.
+to GitHub - it never pretends to send.
 
 ## Screenshots & documentation
 

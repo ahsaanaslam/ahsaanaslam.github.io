@@ -1,5 +1,5 @@
 /* ============================================================
-   Ahsaan Aslam — Portfolio
+   Ahsaan Aslam - Portfolio
    Premium dark redesign · vanilla CSS design system
    Fonts: Archivo (display/body) · Instrument Serif (accents) · JetBrains Mono (labels)
    ============================================================ */
@@ -1885,7 +1885,7 @@ a.contact-link:hover {
   transition-delay: var(--stagger, 0s);
 }
 
-/* Hero intro — pure CSS so it runs reliably everywhere */
+/* Hero intro - pure CSS so it runs reliably everywhere */
 [data-hero] {
   animation: hero-in 0.85s var(--ease-out) both;
   animation-delay: calc(1.1s + var(--d, 0) * 0.09s);

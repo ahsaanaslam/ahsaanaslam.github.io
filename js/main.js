@@ -1,5 +1,5 @@
 /* ============================================================
-   Ahsaan Aslam — Portfolio interactions
+   Ahsaan Aslam - Portfolio interactions
    Powered by Motion (motion.dev) vendored at js/vendor/motion.min.js
    Respects prefers-reduced-motion. Degrades gracefully without JS.
    ============================================================ */
@@ -251,7 +251,7 @@
         if (thumb.classList.contains("is-active")) return;
         main.src = thumb.getAttribute("data-full");
         var label = thumb.getAttribute("aria-label") || "";
-        main.alt = label.replace(/^View (screenshot|design specification): /, "") + " — Airsupply ERP";
+        main.alt = label.replace(/^View (screenshot|design specification): /, "") + " - Airsupply ERP";
         thumbs.forEach(function (t) {
           t.classList.toggle("is-active", t === thumb);
         });
@@ -306,7 +306,7 @@
 
       if (!configured) {
         status.textContent =
-          "The contact form isn't connected to a sending service yet — please email ahsanaslam2221@gmail.com directly.";
+          "The contact form isn't connected to a sending service yet - please email ahsanaslam2221@gmail.com directly.";
         status.className = "contact-form__status is-error";
         return;
       }
@@ -324,7 +324,7 @@
         .then(function (res) {
           if (res.ok) {
             form.reset();
-            status.textContent = "Thanks — your message has been sent. I'll get back to you soon.";
+            status.textContent = "Thanks - your message has been sent. I'll get back to you soon.";
             status.className = "contact-form__status is-success";
           } else {
             throw new Error("Request failed");
