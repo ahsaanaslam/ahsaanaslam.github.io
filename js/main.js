@@ -240,6 +240,28 @@
     });
   }
 
+  /* ---------- ERP screenshot galleries ---------- */
+  document.querySelectorAll(".erp-card__media").forEach(function (media) {
+    var main = media.querySelector(".mock__img");
+    var thumbs = Array.prototype.slice.call(media.querySelectorAll(".shots__thumb"));
+    if (!main || !thumbs.length) return;
+
+    thumbs.forEach(function (thumb) {
+      thumb.addEventListener("click", function () {
+        if (thumb.classList.contains("is-active")) return;
+        main.src = thumb.getAttribute("data-full");
+        var label = thumb.getAttribute("aria-label") || "";
+        main.alt = label.replace(/^View (screenshot|design specification): /, "") + " — Airsupply ERP";
+        thumbs.forEach(function (t) {
+          t.classList.toggle("is-active", t === thumb);
+        });
+        if (M && !reducedMotion) {
+          M.animate(main, { opacity: [0.25, 1] }, { duration: 0.35, ease: "easeOut" });
+        }
+      });
+    });
+  });
+
   /* ---------- ERP card expandable details ---------- */
   document.querySelectorAll(".erp-card__more").forEach(function (btn) {
     var detail = btn.nextElementSibling;
