@@ -40,9 +40,6 @@ Search `index.html` for **`EDIT ME`** to find them:
 - **Profile photo** - in the Hero section, replace the monogram block with
   `<img src="assets/profile.jpg" alt="Portrait of Ahsaan Aslam">` after adding
   your photo to `assets/`.
-- **University name** - the resume at `assets/Ahsaan-Aslam-CV.pdf` has a
-  `[University Name]` placeholder in its Education section; regenerate or edit
-  the file once you want it shown.
 
 ## Contact form
 
