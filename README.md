@@ -37,12 +37,12 @@ git push
 
 Search `index.html` for **`EDIT ME`** to find them:
 
-- **LinkedIn** — in the Contact section, add your profile URL when ready.
 - **Profile photo** — in the Hero section, replace the monogram block with
   `<img src="assets/profile.jpg" alt="Portrait of Ahsaan Aslam">` after adding
   your photo to `assets/`.
-- **Resume button** — intentionally not included yet; add one next to the hero
-  buttons when you have a PDF resume in `assets/`.
+- **University name** — the resume at `assets/Ahsaan-Aslam-CV.pdf` has a
+  `[University Name]` placeholder in its Education section; regenerate or edit
+  the file once you want it shown.
 
 ## Contact form
 
